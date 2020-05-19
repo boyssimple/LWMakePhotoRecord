@@ -8,7 +8,7 @@
 //
 
 #import "LWPrePhotoView.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 
 @interface LWPrePhotoView()
 @property (nonatomic, strong) UIImageView               *ivImage;
