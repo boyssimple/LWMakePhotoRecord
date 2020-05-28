@@ -241,6 +241,12 @@ typedef NS_OPTIONS(NSUInteger, LWRecordSourceType) {
     }
     //拍照
     else if(sender.tag == 106){
+        //取消正在拍摄的情况(还原状态、取消拍摄、重启、隐藏按钮)
+        self.state = LWRecordStateTypeUnStart;
+        [self.recordEngine cancelCapture];
+        [self.recordEngine startUp];
+        [self toggleFinished:TRUE];
+        
         self.pvType = LWPictureOrVideoTypePhoto;
         
         [self.view setNeedsUpdateConstraints];
