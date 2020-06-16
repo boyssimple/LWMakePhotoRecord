@@ -440,15 +440,14 @@ typedef NS_OPTIONS(NSUInteger, LWRecordSourceType) {
         _vPlayer.hidden = TRUE;
         __weak typeof(self) weakSelf = self;
         _vPlayer.clickAction = ^{
-            if (weakSelf.recordFinished) {
-                if (weakSelf.sourceType == LWRecordSourceTypeCamera) {
-                    weakSelf.recordFinished(weakSelf.pvType,weakSelf.recordEngine.videoPath,weakSelf.image);
-                }else{
-                    weakSelf.recordFinished(weakSelf.pvType,weakSelf.locUrl,weakSelf.image);
-                }
-            }
             [weakSelf dismissViewControllerAnimated:TRUE completion:^{
-                
+                if (weakSelf.recordFinished) {
+                    if (weakSelf.sourceType == LWRecordSourceTypeCamera) {
+                        weakSelf.recordFinished(weakSelf.pvType,weakSelf.recordEngine.videoPath,weakSelf.image);
+                    }else{
+                        weakSelf.recordFinished(weakSelf.pvType,weakSelf.locUrl,weakSelf.image);
+                    }
+                }
             }];
         };
     }
@@ -500,11 +499,10 @@ typedef NS_OPTIONS(NSUInteger, LWRecordSourceType) {
         _vPhoto.hidden = TRUE;
         __weak typeof(self) weakSelf = self;
         _vPhoto.clickAction = ^{
-            if (weakSelf.recordFinished) {
-                weakSelf.recordFinished(weakSelf.pvType, @"", weakSelf.image);
-            }
             [weakSelf dismissViewControllerAnimated:TRUE completion:^{
-                
+                if (weakSelf.recordFinished) {
+                    weakSelf.recordFinished(weakSelf.pvType, @"", weakSelf.image);
+                }
             }];
         };
     }
